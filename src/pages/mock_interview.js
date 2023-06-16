@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Navbar from "@/components/Navbar";
+import Head from "next/head";
 
 const API_URL = "https://api.pawan.krd/v1/chat/completions";
 
@@ -17,7 +18,7 @@ export default function Mock() {
             alert("Provide a topic");
             return;
         }
-        const message = `The topic provided is ${topic}. Please start the interview`
+        const message = `The position provided is ${topic}. Please start the interview`
         const upmess = [
             ...history,
             {
@@ -26,6 +27,7 @@ export default function Mock() {
             },
           ];
         setHistory(upmess);
+        try{
         const response = await fetch(API_URL,{
             method: "POST",
             headers: {
@@ -42,7 +44,18 @@ export default function Mock() {
           const botMess = resJson.choices[0].message;
           const updatedMessages2 = [...upmess,botMess];
           setHistory(updatedMessages2);
+        }
+        catch(error){
+          window.alert("Error Occurred. Please input again");
+      }
     }
+
+    const handleKeyDown = (e) => {
+      if(e.key === "Enter" && !e.shiftKey){
+        e.preventDefault();
+        sendRequest();
+      }
+    };
 
     const sendRequest = async () => {
         if(!userAns){
@@ -58,6 +71,7 @@ export default function Mock() {
           ];
         setHistory(upmess);
         setUserAns("");
+        try{
         const response = await fetch(API_URL,{
             method: "POST",
             headers: {
@@ -73,17 +87,27 @@ export default function Mock() {
           const botMess = resJson.choices[0].message;
           const updatedMessages2 = [...upmess,botMess];
           setHistory(updatedMessages2);
+        }
+        catch(error){
+          window.alert("Error Occurred. Please input again");
+      }
     }
 
     return (
 <>
+<Head>
+      <title>ChatVision</title>
+    </Head>
     <div className="flex flex-col h-screen">
             <Navbar/>
         {history.length <= 1 && 
-            <div>
-                <textarea placeholder="Topic" onChange={(e) => setTopic(e.target.value)}/>
-                <button onClick={sendPrompt}>StartQuiz</button>
+            <>
+            <h1 className=" text-4xl font-extrabold mb-4 leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">Quiz Master</h1>
+            <div className="mx-auto w-full max-w-screen-md px-4 pt-0 pb-2 flex">
+                <textarea className="border w-fit rounded-md text-lg p-2 flex-1" placeholder="Position" rows={1} onChange={(e) => setTopic(e.target.value)}/>
+                <button className="border rounded-md bg-blue-500 hover:bg-blue-600 text-white px-4 ml-2" onClick={sendPrompt}>Start Interview</button>
             </div>
+          </>
         }
         {history.length > 1 && 
         <>
@@ -102,7 +126,7 @@ export default function Mock() {
         </div>
         </div>
             <div className="mx-auto w-full max-w-screen-md px-4 pt-0 pb-2 flex">    
-                <textarea className="border rounded-md text-lg p-2 flex-1" rows={1} value={userAns} placeholder="Type your query" onChange={(e) => setUserAns(e.target.value)} />
+                <textarea className="border rounded-md text-lg p-2 flex-1" rows={1} value={userAns} onKeyDown={handleKeyDown} placeholder="Type your response" onChange={(e) => setUserAns(e.target.value)} />
                 <button className="border rounded-md bg-blue-500 hover:bg-blue-600 text-white px-4 ml-2" onClick={sendRequest}>Click</button>
             </div>
         </>
