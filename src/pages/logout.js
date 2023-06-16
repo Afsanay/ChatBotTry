@@ -8,7 +8,7 @@ export default function LogOut(){
 
     useEffect(() => {
         supabase.auth.signOut().then(() => {
-            router.push("/");
+            router.push("/login");
         });
     },[supabase,router]);
     return <div></div>

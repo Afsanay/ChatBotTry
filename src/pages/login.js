@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import toast , { Toaster } from "react-hot-toast";
 import { useRouter } from "next/router";
+import { useUser } from "@supabase/auth-helpers-react"
 
 
 export default function Login(){
@@ -13,6 +14,11 @@ export default function Login(){
 
     const supabase = useSupabaseClient();
     const router = useRouter();
+
+    const user = useUser();
+    if(user){
+      router.push('/');
+    }
 
     async function sendCode() {
         console.log(email);
