@@ -97,7 +97,7 @@ export default function Code() {
             <Navbar/>
         {history.length <= 1 && 
             <>
-            <h1 className=" text-4xl font-extrabold mb-4 leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">Quiz Master</h1>
+            <h1 className=" text-4xl font-extrabold mb-4 leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl">Code Explainer</h1>
             <div className="mx-auto w-full max-w-screen-md px-4 pt-0 pb-2 flex">
                 <textarea className="border w-fit rounded-md text-lg p-2 flex-1" placeholder="Language" rows={1} onChange={(e) => setTopic(e.target.value)}/>
                 <textarea className="border w-fit rounded-md text-lg p-2 flex-1" placeholder="Code" onChange={(e) => setDifficulty(e.target.value)}/>

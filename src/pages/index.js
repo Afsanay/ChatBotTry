@@ -90,7 +90,7 @@ export default function Home() {
           <button className="border rounded-md bg-blue-500 hover:bg-blue-600 text-white px-4 ml-2" onClick={sendRequest}>Click</button>
         </div>
 
-
+        {messages.length === 1 && <>
         <div className="grid grid-cols-3 p-4">
 
 
@@ -121,6 +121,8 @@ export default function Home() {
           </div>
 
         </div>
+        </>
+        }
       </div>
     </>
   )
