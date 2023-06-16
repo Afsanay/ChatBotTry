@@ -101,7 +101,7 @@ export default function Code() {
             <div className="mx-auto w-full max-w-screen-md px-4 pt-0 pb-2 flex">
                 <textarea className="border w-fit rounded-md text-lg p-2 flex-1" placeholder="Language" rows={1} onChange={(e) => setTopic(e.target.value)}/>
                 <textarea className="border w-fit rounded-md text-lg p-2 flex-1" placeholder="Code" onChange={(e) => setDifficulty(e.target.value)}/>
-                <button className="border rounded-md bg-blue-500 hover:bg-blue-600 text-white px-4 ml-2" onClick={sendPrompt}>StartQuiz</button>
+                <button className="border rounded-md bg-blue-500 hover:bg-blue-600 text-white px-4 ml-2" onClick={sendPrompt}>Explain Code</button>
             </div>
         </>
         }
