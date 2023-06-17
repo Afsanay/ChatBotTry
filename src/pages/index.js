@@ -13,7 +13,8 @@ export default function Home() {
   const user = useUser();
   const [userMess,setUserMess] = useState("");
   const [messages,setMessages] = useState([{role:"system",content:SYSTEM_MESSAGE}]);
-
+  // const sysmess = [{role:"system",content:SYSTEM_MESSAGE}];
+  // setMessages(sysmess)
   // Send Handle Key
   const handleKeyDown = (e) => {
     if(e.key === "Enter" && !e.shiftKey){
