@@ -2,18 +2,23 @@ import { useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Navbar from "@/components/Navbar";
 import Head from "next/head";
+import { useUser } from "@supabase/auth-helpers-react"
 
 const API_URL = "https://api.pawan.krd/v1/chat/completions";
 
 const SYSTEM_MESSAGE = "I want you to act as an interviewer. The user will be the candidate and you will ask the user interview questions for the given position.I want you to only reply as the interviewer. Do not write all the questions at once. I want you to only do the interview with me. Ask me the questions and wait for the user's answers. Do not write explanations.Ask the user questions one by one like an interviewer does and wait for the user's answers."
 export default function Mock() {
-
+    const user = useUser();
     const [history,setHistory] = useState([{role:"system",content:SYSTEM_MESSAGE}]);
     const [topic,setTopic] = useState("");
     // const [difficulty,setDifficulty] = useState("");
     const [userAns,setUserAns] = useState("");
 
     const sendPrompt = async () =>{
+      if(!user){
+        alert("Please login");
+        return;
+      }
         if(!topic){
             alert("Provide a topic");
             return;

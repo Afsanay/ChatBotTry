@@ -2,18 +2,25 @@ import { useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Navbar from "@/components/Navbar";
 import Head from "next/head";
+import { useUser } from "@supabase/auth-helpers-react"
+
 
 const API_URL = "https://api.pawan.krd/v1/chat/completions";
 
 const SYSTEM_MESSAGE = "You are a virtual assistant that explains the functionality of some given code in simple words. Start with a short overview of the code, followed by a detailed explanation using bullet points, followed by a list of errors (if any)."
 export default function Code() {
-
+    const user = useUser();
     const [history,setHistory] = useState([{role:"system",content:SYSTEM_MESSAGE}]);
     const [topic,setTopic] = useState("");
     const [difficulty,setDifficulty] = useState("");
     const [userAns,setUserAns] = useState("");
 
     const sendPrompt = async () =>{
+      if(!user){
+        alert("Please login");
+        return;
+      }
+
         if(!topic){
             alert("Provide a topic");
             return;

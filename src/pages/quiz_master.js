@@ -2,19 +2,26 @@ import { useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Navbar from "@/components/Navbar";
 import Head from "next/head";
+import { useUser } from "@supabase/auth-helpers-react"
 
 const API_URL = "https://api.pawan.krd/v1/chat/completions";
 
 const SYSTEM_MESSAGE = "You are an assistant that helps users test their understanding of a topic by asking them multiple choice questions. The topic and difficulty level will be given to you, and you should reply with a single multiple choice question. The user will then reply with the answer, which could be a single character indicating the selected option or the full answer. If the answer is incorrect, simply mention that the answer is incorrect, and ask the user to try again. Don't reveal the correct answer or provide any explanation before the user has answered the question correctly.If the answer is correct, let the user know the answer is correct, provide a brief explanation, and then ask a new multiple choice question related to the same topic and repeat the process. Never ask the same question twice. Adjust the questions' difficultly based on the provided difficulty level."
 
 export default function Quiz() {
-
+    const user = useUser();
     const [history,setHistory] = useState([{role:"system",content:SYSTEM_MESSAGE}]);
     const [topic,setTopic] = useState("");
     const [difficulty,setDifficulty] = useState("");
     const [userAns,setUserAns] = useState("");
 
     const sendPrompt = async () =>{
+      
+      if(!user){
+        alert("Please login");
+        return;
+      }
+
         if(!topic){
             alert("Provide a topic");
             return;
