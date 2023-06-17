@@ -14,6 +14,7 @@ export default function Home() {
   const [userMess,setUserMess] = useState("");
   const [messages,setMessages] = useState([{role:"system",content:SYSTEM_MESSAGE}]);
 
+  // Send Handle Key
   const handleKeyDown = (e) => {
     if(e.key === "Enter" && !e.shiftKey){
       e.preventDefault();
