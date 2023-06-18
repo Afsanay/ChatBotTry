@@ -1,6 +1,6 @@
-const https = require("https");
+// const https = require("https");
 // const fs = require("fs");
-const dir = './pics';
+// const dir = './pics';
 const axios = require('axios');
 
 /*
