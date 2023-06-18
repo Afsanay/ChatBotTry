@@ -79,7 +79,7 @@ async function generateArt() {
     //   getData(result.data.output[i], number + ".png");
     //   console.log('Generated Pic ' + number);
     // }
-  }
+}
 
 // async function getData(image, filename) {
 //     await download(image, filename)
