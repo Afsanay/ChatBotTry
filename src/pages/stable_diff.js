@@ -71,13 +71,14 @@ async function generateArt() {
     console.log('Generating Images....')
     console.log('');
     const result = await axios.post('https://stablediffusionapi.com/api/v3/text2img', bodyInfo, options)
-    const picAmount = result.data.output.length
-    let i = 0;
-    for (i; i < picAmount; i++) {
-      let number = i + 1;
-      getData(result.data.output[i], number + ".png");
-      console.log('Generated Pic ' + number);
-    }
+    const picAmount = result.data.output.length;
+    console.log(picAmount);
+    // let i = 0;
+    // for (i; i < picAmount; i++) {
+    //   let number = i + 1;
+    //   getData(result.data.output[i], number + ".png");
+    //   console.log('Generated Pic ' + number);
+    // }
   }
 
 // async function getData(image, filename) {
