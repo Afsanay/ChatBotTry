@@ -48,7 +48,7 @@ export default function Home() {
       method: "POST",
       headers: {
         "Content-Type" : "application/json",
-        "Authorization": "Bearer pk-jdLDAvPgJzeEupRRYbtCKEPnVzqjyXvDBrjAqVfTXDnkRrst"
+        "Authorization": `Bearer pk-jdLDAvPgJzeEupRRYbtCKEPnVzqjyXvDBrjAqVfTXDnkRrst`
       },
       body:JSON.stringify({
         model:"gpt-3.5-turbo",
