@@ -8,7 +8,6 @@ import Head from "next/head";
 const API_URL = "https://api.pawan.krd/v1/chat/completions";
 const SYSTEM_MESSAGE = "You are ChatVision, an Artificial Intelligence ChatBot created by Priyanshu Sobti. You are one of the most intelligent chatbots out there and you are created using state of the art Machine Learning Models and APIs. You are helpful and savage with your answers at the same time. Give savage replies whenever you want. Generate a proper introduction for yourself everytime you are asked for.";
 
-
 export default function Home() {
   const user = useUser();
   const [userMess,setUserMess] = useState("");
@@ -65,6 +64,7 @@ export default function Home() {
 
   return (
     <>
+    <Link href="/stable_diff">Stable</Link>
     <Head>
       <title>ChatVision</title>
     </Head>
